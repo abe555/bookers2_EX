@@ -13,9 +13,9 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user = User.find(params[:id])
-		@user.update(user_params)
-		redirect_to show_user_path(@user.id)
+		user = User.find(params[:id])
+		user.update(user_params)
+		redirect_to show_user_path(user.id)
 	end
 
 	def create
