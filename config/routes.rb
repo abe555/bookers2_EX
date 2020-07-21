@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root :to => 'homes#top'
 
-  resources :users, :only => [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update]
+
+  resources :books, only: [:new , :create, :index, :show]
 
   get "users/:id" => "users#show", as: 'show_user'
 
