@@ -14,7 +14,7 @@
     				<p>Introduction</p>
   	   			<%= @user.introduction %>
   		  		<div class="row">
-  			   		<a class="btn btn-default glyphicon glyphicon-wrench col-xs-12", aria-hidden="true", href='/users/:id/edit'></a>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-12" %>
   				  </div>
           </table>
           <!--User_profileここまで-->
