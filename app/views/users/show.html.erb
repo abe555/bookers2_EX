@@ -8,13 +8,15 @@
   				<!--user_profileここから-->
           <h2>User info</h2>
   				<%= attachment_image_tag @user, :profile_image, :fill,60, 60, format: 'jpeg' %>
-  				<p>Name</p>
-  				<%= @user.name %></h3>
-  				<p>Introduction</p>
-  				<%= @user.introduction %>
-  				<div class="row">
-  					<a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench", aria-hidden="true", href='/users/:id/edit'></a>
-  				</div>
+          <table class="table">
+  				  <p>Name</p>
+    				<%= @user.name %>
+    				<p>Introduction</p>
+  	   			<%= @user.introduction %>
+  		  		<div class="row">
+  			   		<a class="btn btn-default glyphicon glyphicon-wrench col-xs-12", aria-hidden="true", href='/users/:id/edit'></a>
+  				  </div>
+          </table>
           <!--User_profileここまで-->
           <!--投稿フォームここから-->
 
@@ -27,20 +29,21 @@
 
           <%= form_with model: @book,local: true do |form| %>
 
+
             <h4>Title</h4>
             <div class="field">
               <%= form.text_field :title %>
             </div>
             <h4>Opinion</h4>
             <%= form.text_area :body %>
-            <div class="action">
-              <%= form.submit 'Create Book' %>
+            <div class="btn btn-primary col-xs-12">Create Book
             </div>
           <% end %>
 
   			</div>
   			<div class="col-xs-8 bg-warning">
   				<h2>Books</h2>
+
   			</div>
   		</div>
 	</div>

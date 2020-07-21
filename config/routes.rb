@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root :to => 'homes#top'
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :destroy]
 
   resources :books, only: [:new , :create, :index, :show]
 
