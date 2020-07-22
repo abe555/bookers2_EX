@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-	def new
-	end
-
 	def edit
 		@user = User.find(params[:id])
 	end
@@ -18,7 +15,7 @@ class UsersController < ApplicationController
 		redirect_to show_user_path(@user.id)
 	end
 
-	def create
+	def index
 	end
 
 	def destroy
