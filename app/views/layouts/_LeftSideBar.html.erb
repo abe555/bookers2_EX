@@ -37,8 +37,10 @@
             <div class="row col-xs-12">
               <%= form.text_area :body %>
             </div>
-            <div class="btn btn-primary col-xs-12">Create Book
-            </div>
+            <% if @user.id == current_user.id %>
+              <%= f.submit "Create Book", class:"btn btn-primary col-xs-12" %>
+              </div>
+            <% end %>
           <% end %>
 
 </div>

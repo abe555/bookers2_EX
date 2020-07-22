@@ -10,10 +10,74 @@
       <% end %>
   		<div class="row col-xs-offset-1">
 
-        <%= render 'layouts/LeftSideBar', user:@user %>
+        <div class="col-xs-3">
+          <!--user_profileここから-->
+          <h2>User info</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    <%= attachment_image_tag @user, :profile_image, :fill,70, 70, format: 'jpeg' %>
+                  </th>
+                  <th colspan></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th><%= @user.name %></th>
+                </tr>
+                <tr>
+                  <th>Introduction</th>
+                  <th><%= @user.introduction %></th>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row">
+                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-12" %>
+            </div>
+          <!--User_profileここまで-->
+          <!--投稿フォームここから-->
 
-  			<div class="col-xs-8 bg-warning">
+            <h2>New books</h2>
+
+            <%= form_with model: @book, url: books_path, local: true do |form| %>
+
+              <h4>Title</h4>
+              <div class="row col-xs-12">
+                <%= form.text_field :title %>
+              </div>
+              <h4>Opinion</h4>
+              <div class="row col-xs-12">
+                <%= form.text_area :body %>
+              </div>
+              <% if @user.id == current_user.id %>
+                <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
+              <% end %>
+            <% end %>
+
+        </div>
+
+  			<div class="col-xs-8">
   		  <h2>Books</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th colspan="1"></th>
+                <th>Title</th>
+                <th>Opinion</th>
+              </tr>
+            </thead>
+            <% @book.each do |book| %>
+              <tbody>
+                <tr>
+                  <th><%= attachment_image_tag book.user,:profile_image, :fill, 40, 40, format: 'jpeg'  %></th>
+                  <th><%= book.title %></th>
+                  <th><%= book.body %></th>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
   			</div>
   		</div>
 	</div>

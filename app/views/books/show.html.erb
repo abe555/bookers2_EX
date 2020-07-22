@@ -8,43 +8,14 @@
         </div>
       <% end %>
   		<div class="row col-xs-offset-1">
-  			<div class="col-xs-3">
-  				<!--user_profileここから-->
-          <h2>User info</h2>
-  				<%= attachment_image_tag @user, :profile_image, :fill,60, 60, format: 'jpeg' %>
-          <table class="table">
-  				  <p>Name</p>
-    				<%= @user.name %></h3>
-    				<p>Introduction</p>
-  	   			<%= @user.introduction %>
-  		  		<div class="row">
-  			   		<%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-12" %>
-  				  </div>
-          </table>
-          <!--User_profileここまで-->
-          <!--投稿フォームここから-->
-
-          <h2>New books</h2>
-
-          <%= form_with model: @book,local: true do |form| %>
-
-
-            <h4>Title</h4>
-            <div class="field">
-              <%= form.text_field :title %>
-            </div>
-            <h4>Opinion</h4>
-            <%= form.text_area :body %>
-            <div class="btn btn-primary col-xs-12">Create Book
-            </div>
-          <% end %>
-
+  		
   			</div>
   			<div class="col-xs-8 bg-warning">
   				<h2>Book detail</h2>
           <table class="table">
-            <p><%= @book.title %></p>
-            <P><%= @book.body %></P>
+            <tr>
+            <th><%= @book.title %></th>
+            <th><%= @book.body %></th>
           </table>
   			</div>
   		</div>
