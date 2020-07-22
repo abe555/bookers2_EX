@@ -1,7 +1,7 @@
 <body>
 
   <div class="body">
-  	<div class="profile-containder">
+    <div class="profile-containder">
 
       <% if flash[:notice] %>
         <div class="flash">
@@ -9,7 +9,7 @@
         </div>
       <% end %>
 
-  		<div class="row col-xs-offset-1">
+      <div class="row col-xs-offset-1">
 
         <div class="col-xs-3">
           <!--user_profileここから-->
@@ -59,38 +59,36 @@
             <!--投稿フォームここまで-->
         </div>
 
-  			<div class="col-xs-8">
-  		    <h2>Books</h2>
+        <div class="col-xs-8">
+          <h2>Books</h2>
           <table class="table">
             <thead>
               <tr>
+                <th>image</th>
+                <th>name</th>
                 <th colspan="1"></th>
-                <th>Title</th>
-                <th>Opinion</th>
               </tr>
             </thead>
-            <% @book.each do |book| %>
+            <% @users.each do |user| %>
               <tbody>
                 <tr>
                   <th>
-                    <%= link_to user_path(book.user.id) do %>
-                      <%= attachment_image_tag book.user,:profile_image, :fill, 40, 40, format: 'jpeg'  %>
-                    <% end %>
+                      <%= attachment_image_tag user,:profile_image, :fill, 30, 30, format: 'jpeg'  %>
                   </th>
                   <th>
-                    <%= link_to book_path(book.id) do %>
-                      <%= book.title %>
-                    <% end %>
+                      <%= user.name %>
                   </th>
-                  <th><%= book.body %></th>
+                  <th>
+                    <%= link_to "Show", user_path(user.id) %>
+                  </th>
                 </tr>
               </tbody>
             <% end %>
 
           </table>
-  			</div>
+        </div>
 
-  		</div>
+      </div>
 
     </div>
   </div>

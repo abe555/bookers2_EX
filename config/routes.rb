@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   root :to => 'homes#top'
 
-  resources :users, :only => [:show]
+  resources :users, only: [:show, :edit, :update, :index, :destroy]
+
+  resources :books
 
   get "users/:id" => "users#show", as: 'show_user'
 
-  get "homes/about" => 'homes#about'
+  get "home/about" => 'homes#about'
 
 
 end
