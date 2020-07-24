@@ -39,27 +39,23 @@
             </div>
           <!--User_profileここまで-->
           <!--投稿フォームここから-->
-
+          <div class="filed row">
             <h2>New books</h2>
 
             <%= form_with model: @user.books, url: books_path, local: true do |form| %>
 
+
               <h4>Title</h4>
-              <div class="row col-xs-12">
-                <%= form.text_field :title %>
-              </div>
+              <%= form.text_field :title, class:"col-xs-12 mb-5" %>
               <h4>Opinion</h4>
-              <div class="row col-xs-12">
-                <%= form.text_area :body %>
-              </div>
-              <% if @user.id == current_user.id %>
-                <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
-              <% end %>
+              <%= form.text_area :body, class:"col-xs-12 m-10" %>
+              <%= form.submit "Create Book", class:"btn btn-primary col-xs-12 my-5" %>
             <% end %>
             <!--投稿フォームここまで-->
+          </div>
         </div>
 
-        <div class="col-xs-8">
+        <div class="table-responsive col-xs-8">
           <h2>Books</h2>
           <table class="table">
             <thead>
