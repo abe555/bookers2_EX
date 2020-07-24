@@ -8,9 +8,12 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		if @user_id == current_user.id
+		@user = User.find(params[:id])
+		if current_user == @user
+			flash[:notice] = "Profile was successfully updated!"
 			@user = User.find(params[:id])
 		else
+			flash[:notice] = "error!"
 			redirect_to user_path(current_user.id)
 		end
 	end
