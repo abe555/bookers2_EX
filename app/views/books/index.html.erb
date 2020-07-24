@@ -42,7 +42,7 @@
 
             <h2>New books</h2>
 
-            <%= form_with model: @book, url: books_path, local: true do |form| %>
+            <%= form_with model: current_user.books, url: books_path, local: true do |form| %>
 
               <h4>Title</h4>
               <div class="row col-xs-12">
@@ -52,9 +52,9 @@
               <div class="row col-xs-12">
                 <%= form.text_area :body %>
               </div>
-              <% if @user.id == current_user.id %>
+              <div class="row col-xs-12">
                 <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
-              <% end %>
+              </div>
             <% end %>
             <!--投稿フォームここまで-->
         </div>
