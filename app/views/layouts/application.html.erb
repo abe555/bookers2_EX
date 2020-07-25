@@ -24,49 +24,59 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Bookers</a>
+
 			</div>
 
-			<div class="collapse navbar-collapse" id="navbarEexample4">
-  				<ul class="nav navbar-nav navbar-right">
+			<div class="container navbar-collapse" id="navbarEexample4">
 
-  					<% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-left text-muted">
+            <h4>Bookers</h4>
+          </ul>
+          <nav>
+  				<ul class="nav navbar-nav navbar-right">
               <li>
                 <%= link_to sanitize('<i class="glyphicon glyphicon-home"></i> Home'),user_path(current_user.id) %>
-    					</li>
-  						<li>
-                <%= link_to sanitize('<i class="glyphicon glyphicon-user"></i> Users'),users_path %>
-  						</li>
-  						<li>
-                <%= link_to sanitize('<i class="glyphicon glyphicon-book"></i> Books'),books_path %>
-  						</li>
-  						<li>
-                <%= link_to sanitize('<i class="glyphicon glyphicon-user"></i> logout'),destroy_user_session_path %>
               </li>
+              <li>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-user"></i> Users'),users_path %>
+              </li>
+              <li>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-book"></i> Books'),books_path %>
+              </li>
+              <li>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-user"></i> logout'),destroy_user_session_path, method: :delete %>
+              </li>
+          </ul>
+          </nav>
+  			<% else %>
 
-  					<% else %>
+          <ul class="nav navbar-nav navbar-right">
 
 						<li><a href="/">
-							<span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span></a>
-						</li>
-  						<li><a href="/home/about">
-  							<span class="glyphicon glyphicon-link" aria-hidden="true"> About</span></a>
-  						</li>
-  						<li><a href="/users/sign_up">
-  							<span class="glyphicon glyphicon-edit" aria-hidden="true"> sign up</span></a>
-  						</li>
-  						<li><a href="/users/sign_in">
-  							<span class="glyphicon glyphicon-log-in" aria-hidden="true"> login</span></a>
-  						</li>
+              <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span></a>
+            </li>
+              <li><a href="/home/about">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"> About</span></a>
+              </li>
+              <li><a href="/users/sign_up">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"> sign up</span></a>
+              </li>
+              <li><a href="/users/sign_in">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"> login</span></a>
+              </li>
+          </ul>
 
-  					<% end %>
+ 				<% end %>
 
-  				</ul>
   			</div>
   			</div>
   		</nav>
   	</div>
   	<!--headerここまで-->
+
+    <!--サクセスメッセージ-->
+    <!--サクセスメッセージ-->
 
     <%= yield %>
 
