@@ -1,7 +1,7 @@
 <body>
 
   <div class="body">
-  	<div class="containder">
+  	<div class="container">
   		<% if flash[:notice] %>
         <div class="flash">
           <%= flash[:notice] %>
@@ -17,7 +17,7 @@
               <thead>
                 <tr>
                   <th>
-                    <%= attachment_image_tag @book.user, :profile_image, :fill, 70, 70, format: 'jpeg' %>
+                    <%= attachment_image_tag @book.user, :profile_image, :fill, 70, 70, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
                   </th>
                   <th colspan></th>
                 </tr>
@@ -56,7 +56,7 @@
             <!--投稿フォームここまで-->
         </div>
 
-  			<div class="table-hover col-xs-8">
+  			<div class="table-hover col-xs-9">
   				<h2>Book detail</h2>
           <table class="table">
             <tr>

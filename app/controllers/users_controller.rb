@@ -1,5 +1,6 @@
-class UsersController < User::ApplicationController
+class UsersController < ApplicationController
 
+	before_action :authenticate_user!
 
 	def show
 		@user = User.find(params[:id])
@@ -19,8 +20,13 @@ class UsersController < User::ApplicationController
 
 	def update
 		user = User.find(params[:id])
-		user.update(user_params)
-		redirect_to user_path(user.id)
+		if user.update(user_params)
+			flash[:notice] = "Profile was successfully updated!"
+			redirect_to user_path(user.id)
+		else
+			flash[:notice] = "error!"
+			redirect_to user_path(user.id)
+		end
 	end
 
 	def index
@@ -29,6 +35,8 @@ class UsersController < User::ApplicationController
 	end
 
 	def destroy
+		flash[:notice] = "Signed out successfully,"
+		redirect_to root_path
 	end
 
 	private
