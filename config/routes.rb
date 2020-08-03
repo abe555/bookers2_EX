@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :books do
   	resource :favorites, only: [:create, :destroy]
+  	resource :post_comments, only: [:create, :destroy]
   end
 
   get "users/:id" => "users#show", as: 'show_user'
