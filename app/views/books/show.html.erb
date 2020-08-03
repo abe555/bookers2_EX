@@ -34,25 +34,12 @@
               </tbody>
             </table>
             <div class="row">
-                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-12" %>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-10 col-xs-offset-1s" %>
             </div>
           <!--User_profileここまで-->
           <!--投稿フォームここから-->
-
-            <h2>New books</h2>
-
-            <%= form_with model: current_user.books, url: books_path, method: :post, local: true do |form| %>
-
-              <h4>Title</h4>
-              <div class="row col-xs-12">
-                <%= form.text_field :title %>
-              </div>
-              <h4>Opinion</h4>
-              <div class="row col-xs-12">
-                <%= form.text_area :body %>
-              </div>
-                <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
-            <% end %>
+          <h2>New books</h2>
+          <%= render 'books/newbookform' %>
             <!--投稿フォームここまで-->
         </div>
 
@@ -74,14 +61,64 @@
               </th>
               <th><%= @book.body %></th>
 
-               <% if current_user.id == @book.user_id %>
+              <% if current_user.id == @book.user_id %>
 
                 <th><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-success" %></th>
                 <th><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-danger", "data-confirm" => "Are you sure?" %></th>
 
               <% end %>
+
+              <!--いいね/コメント機能-->
+                  <th>
+                    <% if @book.favorited_by?(current_user) %>
+                      <li>
+                        <%= link_to book_favorites_path(@book.id), method: :delete do %>
+                          <i class="fa fa-heart", aria-hidden="true" style="color: red;"></i>
+                          <%= @book.favorites.count %>
+                        <% end %>
+                      </li>
+                    <% else %>
+                      <li>
+                        <%= link_to book_favorites_path(@book.id), method: :post do %>
+                          <i class="fa fa-heart-o", aria-hidden="true"></i>
+                          <%= @book.favorites.count %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </th>
+                  <th>コメント数：<%= @book.post_comments.count %></th>
+                  <!--いいね機能最後尾-->
+
             </tr>
           </table>
+
+          <!--コメント機能-->
+          <div class="row, comment_index">
+            <table class="table">
+              <h3>コメント一覧</h3>
+              <% @book.post_comments.each do |post_comment| %>
+                <tr>
+                  <th>
+                  <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                  </th>
+                  <th><%= post_comment.comment %></th>
+                  <% if post_comment.user == current_user %>
+                    <th>
+                      <%= link_to "destroy", book_post_comments_path(post_comment.book, post_comment), method: :delete, class: "btn btn-danger" %>
+                    </th>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+
+          <div class="row, col-xs-12">
+              <%= form_for [@book, @post_comment] do |f| %>
+                <%= f.text_area :comment %>
+                <%= f.submit "送信", method: :post  %>
+              <% end %>
+          </div>
+          <!--コメント機能ここまで-->
   			</div>
   		</div>
 	</div>
