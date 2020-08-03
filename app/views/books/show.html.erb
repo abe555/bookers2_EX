@@ -34,25 +34,12 @@
               </tbody>
             </table>
             <div class="row">
-                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-12" %>
+                <%= link_to sanitize('<i class="glyphicon glyphicon-wrench"></i>'), edit_user_path(current_user.id), class: "btn btn-default col-xs-10 col-xs-offset-1s" %>
             </div>
           <!--User_profileここまで-->
           <!--投稿フォームここから-->
-
-            <h2>New books</h2>
-
-            <%= form_with model: current_user.books, url: books_path, method: :post, local: true do |form| %>
-
-              <h4>Title</h4>
-              <div class="row col-xs-12">
-                <%= form.text_field :title %>
-              </div>
-              <h4>Opinion</h4>
-              <div class="row col-xs-12">
-                <%= form.text_area :body %>
-              </div>
-                <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
-            <% end %>
+          <h2>New books</h2>
+          <%= render 'books/newbookform' %>
             <!--投稿フォームここまで-->
         </div>
 

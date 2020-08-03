@@ -1,0 +1,14 @@
+            <%= form_with model: current_user.books, url: books_path, local: true do |form| %>
+
+              <div class="row">
+                <%= form.label :title %>
+                <%= form.text_field :title, class: "col-xs-12" %>
+              </div>
+              <div class="row">
+                <%= form.label :body %>
+                <%= form.text_area :body, class: "col-xs-12" %>
+              </div>
+              <div class="row">
+                <%= form.submit "Create Book", class:"btn btn-primary col-xs-12" %>
+              </div>
+            <% end %>
