@@ -1,0 +1,20 @@
+<!--いいね機能-->
+                  <th>
+                    <% if book.favorited_by?(current_user) %>
+                      <li>
+                        <%= link_to book_favorites_path(book.id), method: :delete do %>
+                          <i class="fa fa-heart", aria-hidden="true" style="color: red;"></i>
+                          <%= book.favorites.count %>
+                        <% end %>
+                      </li>
+                    <% else %>
+                      <li>
+                        <%= link_to book_favorites_path(book.id), method: :post do %>
+                          <i class="fa fa-heart-o", aria-hidden="true"></i>
+                          <%= book.favorites.count %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </th>
+                  <th>コメント数：<%= book.post_comments.count %></th>
+                  <!--いいね機能最後尾-->
