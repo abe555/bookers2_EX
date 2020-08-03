@@ -99,11 +99,39 @@
                       </li>
                     <% end %>
                   </th>
-                  <th>コメント数：</th>
+                  <th>コメント数：<%= @book.post_comments.count %></th>
                   <!--いいね機能最後尾-->
 
             </tr>
           </table>
+
+          <!--コメント機能-->
+          <div class="row, comment_index">
+            <table class="table">
+              <h3>コメント一覧</h3>
+              <% @book.post_comments.each do |post_comment| %>
+                <tr>
+                  <th>
+                  <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                  </th>
+                  <th><%= post_comment.comment %></th>
+                  <% if post_comment.user == current_user %>
+                    <th>
+                      <%= link_to "destroy", book_post_comments_path(post_comment.book, post_comment), method: :delete, class: "btn btn-danger" %>
+                    </th>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+
+          <div class="row, col-xs-12">
+              <%= form_for [@book, @post_comment] do |f| %>
+                <%= f.text_area :comment %>
+                <%= f.submit "送信", method: :post  %>
+              <% end %>
+          </div>
+          <!--コメント機能ここまで-->
   			</div>
   		</div>
 	</div>
