@@ -99,7 +99,7 @@
               <% @book.post_comments.each do |post_comment| %>
                 <tr>
                   <th>
-                  <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                  <%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
                   </th>
                   <th><%= post_comment.comment %></th>
                   <% if post_comment.user == current_user %>
